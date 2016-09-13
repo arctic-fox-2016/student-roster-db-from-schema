@@ -18,13 +18,14 @@ class Controller {
   }
 
   static displayStudent() {
+  	let i = 0
     let DISPLAY_STUDENT = `SELECT * FROM student`
     Controller.runDbAllCommand(DISPLAY_STUDENT)
   }
 
   static displayStudentByName(firstname, lastname) {
     let DISPLAY_STUDENT_BY_NAME = `SELECT * FROM student WHERE firstname = ${firstname} AND lastname = ${lastname}`
-    Controller.runDbCommand(DISPLAY_STUDENT_BY_NAME)
+    Controller.runDbAllCommand(DISPLAY_STUDENT_BY_NAME)
   }
 
   static displayStudentByAttribute() {
@@ -33,12 +34,12 @@ class Controller {
 
   static displayStudentByBirthdayMonth(month) {
     let DISPLAY_STUDENT_BY_BIRTHDAY_MONTH = `SELECT * FROM student WHERE MONTH(birthdate) = ${month}`
-    Controller.runDbCommand(DISPLAY_STUDENT_BY_BIRTHDAY_MONTH)
+    Controller.runDbAllCommand(DISPLAY_STUDENT_BY_BIRTHDAY_MONTH)
   }
 
   static displayStudentSortBirthday() {
     let DISPLAY_STUDENTS_SORT_BIRTHDAY = `SELECT * FROM student ORDER BY birthdate`
-    Controller.runDbCommand(DISPLAY_STUDENTS_SORT_BIRTHDAY)
+    Controller.runDbAllCommand(DISPLAY_STUDENTS_SORT_BIRTHDAY)
   }
 
   static runDbCommand(command){
@@ -56,19 +57,20 @@ class Controller {
   }
 
   static runDbAllCommand(command){
-      db.serialize(function() {
-        // Create table
-        db.all(command, function(err,data) {
-          if (err) {
-            console.log(err)
-          } else {
-            console.log(data)
-          }
-        })
+    db.serialize(function() {
+      // Create table
+      db.all(command, function(err,data) {
+        if (err) {
+          console.log(err)
+        } else {
+          console.log(data)
+        }
       })
-    }
+    })
+  }
 }
-let replServer = repl.start({prompt:'>'})
+
+let replServer = repl.start({prompt:'> '})
 replServer.context.Controller = Controller
 
 // Create Student class to CRUD with Database
