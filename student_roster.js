@@ -18,7 +18,6 @@ class Controller {
   }
 
   static displayStudent() {
-  	let i = 0
     let DISPLAY_STUDENT = `SELECT * FROM student`
     Controller.runDbAllCommand(DISPLAY_STUDENT)
   }
