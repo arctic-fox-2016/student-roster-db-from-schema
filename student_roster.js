@@ -18,6 +18,7 @@ class Controller {
   }
 
   static displayStudent() {
+    console.log("halo")
     let DISPLAY_STUDENT = `SELECT * FROM student`
     Controller.runDbAllCommand(DISPLAY_STUDENT)
   }
