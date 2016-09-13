@@ -1,5 +1,5 @@
 "use strict"
-
+//contoh
 const repl = require('repl'); // optional
 const sqlite = require('sqlite3').verbose();
 
