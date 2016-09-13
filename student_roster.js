@@ -23,7 +23,7 @@ class Controller {
   }
 
   static displayStudentByName(firstname, lastname) {
-    let DISPLAY_STUDENT_BY_NAME = `SELECT * FROM student WHERE firstname = ${firstname} AND lastname = ${lastname}`
+    let DISPLAY_STUDENT_BY_NAME = `SELECT * FROM student WHERE firstname LIKE '${firstname}' AND lastname LIKE '${lastname}'`
     Controller.runDbAllCommand(DISPLAY_STUDENT_BY_NAME)
   }
 
