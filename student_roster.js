@@ -1,6 +1,6 @@
 "use strict"
 
-
+const repl = require('repl');
 const sqlite = require ('sqlite3').verbose();
 let file = 'student.db';
 let db = new sqlite.Database(file);
@@ -121,4 +121,12 @@ let birthlist = (date) => {
     })
   })
 }
-birthlist("1981-12-31");
+
+//birthlist("1981-12-31");
+let replServer = repl.start({prompt:">"})
+replServer.context.birthlist = birthlist //birthlist("1981-12-31");
+replServer.context.birthDate = birthDate //birthDate("05");
+replServer.context.listStudent = listStudent
+replServer.context.listSearch = listSearch
+replServer.context.deltData = deltData
+replServer.context.insertData = insertData
